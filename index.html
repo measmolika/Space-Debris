@@ -28,14 +28,6 @@
       terrainProvider: Cesium.createWorldTerrain(),
       shouldAnimate: true,
     });    
-    var blueEllipsoid = viewer.entities.add({
-      name: "Blue ellipsoid",
-      position: Cesium.Cartesian3.fromDegrees(104.88, 11.56, 300000.0),
-      ellipsoid: {
-      radii: new Cesium.Cartesian3(200000.0, 200000.0, 300000.0),
-      material: Cesium.Color.BLUE,
-      },
-    });
 
     viewer.dataSources.add(
       Cesium.CzmlDataSource.load("simple.czml")
