@@ -4,11 +4,15 @@
 ```
 npm install cesium
 ```
-2. Run python server
+2. Navigate to the project directory
+```
+cd Space-Debris
+```
+3. Run python server
 ```
 python -m http.server
 ```
-3. Open your browser and navigate to
+4. Open your browser and navigate to
 ```
 localhost:8000
 ```
