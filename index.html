@@ -21,17 +21,30 @@
 <body>
   <div id="cesiumContainer"></div>
   <script>
-    // Your access token can be found at: https://cesium.com/ion/tokens.
-    // Replace `your_access_token` with your Cesium ion access token.
-
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNjZiNmM3ZS03ZTkxLTRkOGQtOWVmOC1lNGM2YjAyNzYyNGIiLCJpZCI6NjkxMTMsImlhdCI6MTYzMzE4MTg1M30.CPUGRPNDouCQs3ZWfrCOJUT2BeXWW3pbMDyMUc_ilLo'
 
     // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
     const viewer = new Cesium.Viewer('cesiumContainer', {
-      terrainProvider: Cesium.createWorldTerrain()
+      terrainProvider: Cesium.createWorldTerrain(),
+      shouldAnimate: true,
     });    
-    // Add Cesium OSM Buildings, a global 3D buildings layer.
-    const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());   
+    var blueEllipsoid = viewer.entities.add({
+      name: "Blue ellipsoid",
+      position: Cesium.Cartesian3.fromDegrees(104.88, 11.56, 300000.0),
+      ellipsoid: {
+      radii: new Cesium.Cartesian3(200000.0, 200000.0, 300000.0),
+      material: Cesium.Color.BLUE,
+      },
+    });
+
+    viewer.dataSources.add(
+      Cesium.CzmlDataSource.load("simple.czml")
+    );
+
+    viewer.dataSources.add(
+      Cesium.CzmlDataSource.load("Vehicle.czml")
+    );
+  
   </script>
  </div>
 </body>
