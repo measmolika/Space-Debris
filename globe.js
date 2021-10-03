@@ -40,30 +40,39 @@ for (var i=1; i<test_czml.length; i++)
 dataSource.load(test_czml);
 viewer.dataSources.add(dataSource);
 
-function showPath(elem){
-	test_czml[elem].path.show = true
-	test_czml[elem].label.show = true
-	dataSource.load(test_czml);
-	viewer.dataSources.add(dataSource);
-}
-
-var pickedList = [];
-// Mouse over the globe to see the cartographic position
-var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+var handler;
+var picked;
+handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
 handler.setInputAction(function (movement) {
-	var pickedObject = scene.pick(movement.endPosition);
+	var pickedObject = scene.pick(movement.position);
 	if (Cesium.defined(pickedObject)) {
+		if (picked!=undefined){
+			picked.path.show = false;
+			picked.label.show = false;
+		}
 		pickedObject.id.path.show = true;
 		pickedObject.id.label.show = true;
-		pickedList.push(pickedObject.id);
+		picked = pickedObject.id;
+	}
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+var hoveredList = [];
+// Mouse over the globe to see the cartographic position
+handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+handler.setInputAction(function (movement) {
+	var hoveredObject = scene.pick(movement.endPosition);
+	if (Cesium.defined(hoveredObject)) {
+		hoveredObject.id.path.show = true;
+		hoveredObject.id.label.show = true;
+		hoveredList.push(hoveredObject.id);
 	}else{
-		for (var i = 0; i < pickedList.length; i++) {
-			pickedList[i].path.show = false;
-			pickedList[i].label.show = false;
-			pickedList.shift();
+		for (var i = 0; i < hoveredList.length; i++) {
+			if (picked != hoveredList[i]) {
+				hoveredList[i].path.show = false;
+				hoveredList[i].label.show = false;
+				hoveredList.shift();
+			}	
 		}
 	}
 }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
-
 
