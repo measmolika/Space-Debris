@@ -3,6 +3,7 @@ Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 // czml satellite data
 test_czml = iridiumCzml;
+test_czml[0].clock.multiplier = 1;
 
 // initialize new globe viewer
 const viewer = new Cesium.Viewer('cesiumContainer', {
