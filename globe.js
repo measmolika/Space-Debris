@@ -100,7 +100,7 @@ function filtername(name) {
 	return result;
 }
 ////////////////////////////////////////////////////////////
-
+ 
 
 /////////////////////////////////////////////////////////////
 function filterbyname(){
@@ -114,8 +114,8 @@ function filterbyname(){
 	// TODO: clear data source
 
 	// TODO: Add new data source with only the filtered objects
-	for (var r=0; t<result.length; r++) {
-		test_czml[t].billboard.show = true;
+	for (var r=0; r<result.length; r++) {
+		result[r].billboard.show = true;
 	}
 	dataSource.load(result);
 	viewer.dataSources.add(dataSource);
