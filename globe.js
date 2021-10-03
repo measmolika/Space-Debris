@@ -10,6 +10,11 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   shouldAnimate: true
 });
 
+var scene = viewer.scene;
+if (!scene.pickPositionSupported) {
+  window.alert("This browser does not support pickPosition.");
+}
+
 // initialize new czml data loader
 var dataSource = new Cesium.CzmlDataSource()
 
@@ -34,8 +39,6 @@ for (var i=1; i<test_czml.length; i++)
 dataSource.load(test_czml);
 viewer.dataSources.add(dataSource);
 
-
-
 function showPath(elem){
 	test_czml[elem].path.show = true
 	test_czml[elem].label.show = true
@@ -43,11 +46,23 @@ function showPath(elem){
 	viewer.dataSources.add(dataSource);
 }
 
-
-for (var i=1; i<test_czml.length; i++) 
-{
-	test_czml[i].billboard.image.addEventListener("mouseover", showPath(i));
-}
+var pickedList = [];
+// Mouse over the globe to see the cartographic position
+var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+handler.setInputAction(function (movement) {
+	var pickedObject = scene.pick(movement.endPosition);
+	if (Cesium.defined(pickedObject)) {
+		pickedObject.id.path.show = true;
+		pickedObject.id.label.show = true;
+		pickedList.push(pickedObject.id);
+	}else{
+		for (var i = 0; i < pickedList.length; i++) {
+			pickedList[i].path.show = false;
+			pickedList[i].label.show = false;
+			pickedList.shift();
+		}
+	}
+}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
 
 
