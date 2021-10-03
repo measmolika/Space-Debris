@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <title> </title>
+  <style>
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer" style="position: relative">
+    <nav class="nav-main" style="position: absolute; z-index: 10;">
+      <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+    <!--the button is an onclick event-->
+    </nav>
+    <aside class="nav-sidebar" style="position: absolute; z-index: 10;">
+      <ul>
+        <li><span>Satellite Options</span></li>
+        <li><a href='#'>Indian</a></li>
+        <li><a href='#'>Chinese</a></li>
+        <li><a href='#'>Erridium/American</a></li>
+      </ul>
+    </aside>
+  </div>
+
+ </body>
+</body>
+<script src="menu.js"></script>
+</html>
