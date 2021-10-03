@@ -5,6 +5,9 @@ Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 test_czml = iridiumCzml;
 test_czml[0].clock.multiplier = 1;
 
+// lookup data
+satcat_lookup = satcat;
+
 // initialize new globe viewer
 const viewer = new Cesium.Viewer('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain(),
@@ -75,4 +78,47 @@ handler.setInputAction(function (movement) {
 		}
 	}
 }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+
+//////////////////////////////////////////////////////////
+function filtername(name) {
+	// select from the lookup data where name matches
+	var res = satcat_lookup.filter(function(arr){
+		return arr.OBJECT_NAME == name;         
+	});
+	// get list of NORAD_CAT_ID from the lookup result
+	var res1 = res.map(a => a.NORAD_CAT_ID);
+	
+	// get list of czml objects where NORAD_CAD_ID matches the ID from the lookup result
+	var result = [];
+	for (var t=0; t<test_czml.length; t++) {
+		var obj_norad_cat_id = test_czml[t].id.split(" ").at(-1);
+		if (res1.includes(parseInt(obj_norad_cat_id))) {
+			result.push(test_czml[t]);
+		}
+	}
+	return result;
+}
+////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////
+function filterbyname(){
+	var name = document.getElementById("satname").value;
+	var result = filtername(name); // get list of czml objects where name match selected 
+	
+	// make all the objs inactive then, make active only the selected czml objects
+	for (var t=1; t<test_czml.length; t++) {
+		test_czml[t].billboard.show = false;
+	}
+	// TODO: clear data source
+
+	// TODO: Add new data source with only the filtered objects
+	for (var r=0; t<result.length; r++) {
+		test_czml[t].billboard.show = true;
+	}
+	dataSource.load(result);
+	viewer.dataSources.add(dataSource);
+}
+/////////////////////////////////////////////////////////////
 

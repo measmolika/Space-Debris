@@ -5,6 +5,7 @@
   <!-- Include the CesiumJS JavaScript and CSS files -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Cesium.js"></script>
   <script src="data/js_vars/iridiumCzml.js"></script>
+  <script src="data/js_vars/satcat.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
   <style>
@@ -22,16 +23,15 @@
         <tbody>
           <tr>
             <td>
-              <select class="cesium-button" id="dropdown">
+              <select class="cesium-button" id="satname" onchange="filterbyname()">
                 <option value="0">Satellite Name</option>
-                <option value="1">Show Features Based on Property</option>
-                <option value="2">Color Features with Conditions</option>
+                <option value="IRIDIUM 33 DEB">IRIDIUM 33 DEB</option>
               </select>
             </td>
           </tr>
           <tr>
             <td>
-              <select class="cesium-button" id="dropdown">
+              <select class="cesium-button" id="dropdown  origincountry">
                 <option value="0">Country of Origin</option>
                 <option value="1">Show Features Based on Property</option>
                 <option value="2">Color Features with Conditions</option>
@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <td>
-              <select class="cesium-button" id="dropdown">
+              <select class="cesium-button" id="dropdown launchdate">
                 <option value="0">Launch Date</option>
                 <option value="1">Show Features Based on Property</option>
                 <option value="2">Color Features with Conditions</option>
@@ -49,7 +49,7 @@
           </tr>
           <tr>
             <td>
-              <select class="cesium-button" id="dropdown">
+              <select class="cesium-button" id="dropdown status">
                 <option value="0">Status</option>
                 <option value="1">Show Features Based on Property</option>
                 <option value="2">Color Features with Conditions</option>
