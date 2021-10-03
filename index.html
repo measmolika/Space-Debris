@@ -20,7 +20,20 @@
   </style>
 </head>
 <body>
-  <div id="cesiumContainer"></div>
+  <div id="cesiumContainer" style="position: relative">
+    <nav class="nav-main" style="position: absolute; z-index: 10;">
+      <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+    <!--the button is an onclick event-->
+    </nav>
+    <aside class="nav-sidebar" style="position: absolute; z-index: 10;">
+      <ul>
+        <li><span>Satellite Options</span></li>
+        <li><a href='#'>Indian</a></li>
+        <li><a href='#'>Chinese</a></li>
+        <li><a href='#'>Erridium/American</a></li>
+      </ul>
+    </aside>
+  </div>
   <script>
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNjZiNmM3ZS03ZTkxLTRkOGQtOWVmOC1lNGM2YjAyNzYyNGIiLCJpZCI6NjkxMTMsImlhdCI6MTYzMzE4MTg1M30.CPUGRPNDouCQs3ZWfrCOJUT2BeXWW3pbMDyMUc_ilLo'
 
@@ -39,19 +52,7 @@
     );
   
   </script>
- </div>
-<nav class="nav-main">
-  <div class="btn-toggle-nav" onclick="toggleNav()"></div>
-<!--the button is an onclick event-->
-</nav>
-<aside class="nav-sidebar">
-  <ul>
-    <li><span>Satellite Options</span></li>
-    <li><a href='#'>Indian</a></li>
-    <li><a href='#'>Chinese</a></li>
-    <li><a href='#'>Erridium/American</a></li>
-  </ul>
-</aside>
+
  </body>
 </body>
 <script src="menu.js"></script>
