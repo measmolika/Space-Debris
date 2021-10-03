@@ -5,7 +5,10 @@
   <!-- Include the CesiumJS JavaScript and CSS files -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.86/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<<<<<<< HEAD
   <title> </title>
+=======
+>>>>>>> 285534748bb93daadf1ee68d7f39dc8647aea468
   <style>
     html,
     body,
@@ -20,6 +23,7 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
   <div id="cesiumContainer" style="position: relative">
     <nav class="nav-main" style="position: absolute; z-index: 10;">
       <div class="btn-toggle-nav" onclick="toggleNav()"></div>
@@ -38,4 +42,35 @@
  </body>
 </body>
 <script src="menu.js"></script>
+=======
+  <div id="cesiumContainer"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNjZiNmM3ZS03ZTkxLTRkOGQtOWVmOC1lNGM2YjAyNzYyNGIiLCJpZCI6NjkxMTMsImlhdCI6MTYzMzE4MTg1M30.CPUGRPNDouCQs3ZWfrCOJUT2BeXWW3pbMDyMUc_ilLo'
+
+    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrainProvider: Cesium.createWorldTerrain(),
+      shouldAnimate: true,
+    });    
+    var blueEllipsoid = viewer.entities.add({
+      name: "Blue ellipsoid",
+      position: Cesium.Cartesian3.fromDegrees(104.88, 11.56, 300000.0),
+      ellipsoid: {
+      radii: new Cesium.Cartesian3(200000.0, 200000.0, 300000.0),
+      material: Cesium.Color.BLUE,
+      },
+    });
+
+    viewer.dataSources.add(
+      Cesium.CzmlDataSource.load("simple.czml")
+    );
+
+    viewer.dataSources.add(
+      Cesium.CzmlDataSource.load("Vehicle.czml")
+    );
+  
+  </script>
+ </div>
+</body>
+>>>>>>> 285534748bb93daadf1ee68d7f39dc8647aea468
 </html>
