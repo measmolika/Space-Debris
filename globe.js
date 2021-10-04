@@ -6,12 +6,11 @@ Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 //////////////////////////////////////////////////////////
 
 // czml satellite data
-test_czml = allSats;
+test_czml = iridiumCzml;
 test_czml[0].clock.multiplier = 1;
 
 // lookup data
 satcat_lookup = satcat;
-
 
 //////////////////////////////////////////////////////////
 /// DATA MODIFICATIONS ///
